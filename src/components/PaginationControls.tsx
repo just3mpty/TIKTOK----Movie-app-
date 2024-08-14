@@ -2,6 +2,7 @@
 
 import React from "react";
 import { useRouter } from "next/navigation";
+import styles from "../app/page.module.css";
 
 interface PaginationProps {
     currentPage: number;
@@ -17,17 +18,17 @@ const PaginationControls: React.FC<PaginationProps> = ({
     const handlePageChange = (newPage: number) => {
         if (newPage < 1 || newPage > totalPages) return;
 
-        router.push(`/movies?page=${newPage}`);
+        router.push(`/?page=${newPage}`);
     };
 
     return (
-        <div style={{ marginTop: "20px", textAlign: "center" }}>
+        <div className={styles.navigation}>
             <button
                 disabled={currentPage === 1}
                 onClick={() => handlePageChange(currentPage - 1)}>
                 Previous
             </button>
-            <span style={{ margin: "0 15px" }}>
+            <span>
                 Page {currentPage} sur {totalPages}
             </span>
             <button
